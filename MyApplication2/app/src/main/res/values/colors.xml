@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="red">#FF3030</color>
+    <color name="buttonAndText">#008B8B</color>
+    <color name="bgwhite">#F7F7F7</color>
+    <color name="text">#363636</color>
+    <color name="textWhite">#ffffff</color>
+    <color name="fsk_green">#54FF9F</color>
+    <color name="fsk_base_bg">#F5F0F0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="color_bg">#EEE8E8</color>
+    <color name="bg_black">#010101</color>
+</resources>
