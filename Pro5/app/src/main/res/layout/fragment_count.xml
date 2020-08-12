@@ -21,9 +21,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.example.pro5.ChartView
-                    android:id="@+id/chartView2"
-                    android:layout_width="wrap_content"
+                <com.example.pro5.PieChartView
+                    android:id="@+id/piechart"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -36,7 +36,7 @@
                     android:layout_height="match_parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/chartView2">
+                    app:layout_constraintTop_toBottomOf="@+id/piechart">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView8"
+                                android:id="@+id/turnover"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -93,7 +93,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView15"
+                                android:id="@+id/effective"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -130,7 +130,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView16"
+                                android:id="@+id/exposing"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -177,7 +177,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView17"
+                                android:id="@+id/store_rate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -215,7 +215,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView18"
+                                android:id="@+id/order_rate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -294,7 +294,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="32dp"
                             android:layout_marginRight="32dp"
-                            android:text="TextView"
+                            android:text="查看全部"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -326,7 +326,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="11"
-                                android:background="@drawable/btn_upload_style_left"
+                                android:background="@drawable/radio_style_left"
                                 android:button="@null"
                                 android:checked="true"
                                 android:gravity="center"
@@ -338,7 +338,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="11"
-                                android:background="@drawable/btn_upload_style"
+                                android:background="@drawable/radio_style"
                                 android:button="@null"
                                 android:gravity="center"
                                 android:padding="8dp"
@@ -349,7 +349,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="11"
-                                android:background="@drawable/btn_upload_style_right"
+                                android:background="@drawable/radio_style_right"
                                 android:button="@null"
                                 android:gravity="center"
                                 android:padding="8dp"
@@ -659,6 +659,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
                             android:background="@drawable/ic_baseline_chevron_right_24"
+                            android:clickable="false"
                             app:layout_constraintBottom_toBottomOf="@+id/textView34"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/textView34" />
@@ -798,6 +799,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
                             android:background="@drawable/ic_baseline_chevron_right_24"
+                            android:clickable="false"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -1074,6 +1076,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
                             android:background="@drawable/ic_baseline_chevron_right_24"
+                            android:clickable="false"
                             app:layout_constraintBottom_toBottomOf="@+id/textView55"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/textView55" />
