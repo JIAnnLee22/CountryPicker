@@ -25,9 +25,9 @@ public class CalendarDialog extends AlertDialog {
     private static String mDate;
     private Context mContext;
     //    private String mDate;
-    private static int nowYear = 0;
-    private static int nowMonth = 0;
-    private static int nowDay = 0;
+    private int nowYear = 0;
+    private int nowMonth = 0;
+    private int nowDay = 0;
 
     /**
      * 点击日历图标弹出的对话框
@@ -129,7 +129,7 @@ public class CalendarDialog extends AlertDialog {
         alertDialog.show();
     }
 
-    public static int getNowYear() {
+    public int getNowYear() {
         return nowYear;
     }
 
@@ -137,7 +137,7 @@ public class CalendarDialog extends AlertDialog {
         this.nowYear = nowYear;
     }
 
-    public static int getNowMonth() {
+    public int getNowMonth() {
         return nowMonth;
     }
 
@@ -145,7 +145,7 @@ public class CalendarDialog extends AlertDialog {
         this.nowMonth = nowMonth;
     }
 
-    public static int getNowDay() {
+    public int getNowDay() {
         return nowDay;
     }
 

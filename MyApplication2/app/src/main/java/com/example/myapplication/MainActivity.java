@@ -190,8 +190,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     break;
                 case OCR_PASSPORT:
-                    if (getmPassportBean().getWords_result_num()<11){
-                        Toast.makeText(getApplicationContext(),"扫描获取的信息不全",Toast.LENGTH_SHORT).show();
+                    if (getmPassportBean().getWords_result_num() < 11) {
+                        Toast.makeText(getApplicationContext(), "扫描获取的信息不全", Toast.LENGTH_SHORT).show();
                     }
                     //使用getmPassportBean()可以获取护照识别信息
 //                    if (getmPassportBean().getWords_result().get姓名() == null) return;
@@ -508,24 +508,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             setDisplayOrientation();
-            mCamera.setParameters(mParameters);//设置摄像头参数
+//            mCamera.setParameters(mParameters);//设置摄像头参数
             mCamera.startPreview();
             mCamera.autoFocus(new Camera.AutoFocusCallback() {
                 @Override
                 public void onAutoFocus(boolean success, Camera camera) {
                     if (success) {
-                        camera.cancelAutoFocus();// 加上了这一句，才自动对焦。
+                        mCamera.cancelAutoFocus();// 加上了这一句，才自动对焦。
                         if (!Build.MODEL.equals("KORIDY H30")) {
-                            mParameters = camera.getParameters();
+                            mParameters = mCamera.getParameters();
                             mParameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);// 连续自动对焦
-                            mCamera.setParameters(mParameters);
+//                            mCamera.setParameters(mParameters);
                         } else {
-                            mParameters = camera.getParameters();
+                            mParameters = mCamera.getParameters();
                             mParameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
-                            mCamera.setParameters(mParameters);
+//                            mCamera.setParameters(mParameters);
                         }
                     }
+//                    mCamera.setParameters(mParameters);
                 }
+
             });
             initSensorManager();
         }

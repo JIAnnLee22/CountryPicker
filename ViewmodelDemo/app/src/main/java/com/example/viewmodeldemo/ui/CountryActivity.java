@@ -69,7 +69,7 @@ public class CountryActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        indexView = findViewById(R.id.indexView);
+//        indexView = findViewById(R.id.indexView);
         recyclerView = findViewById(R.id.country_list);
         searchView = findViewById(R.id.country_search);
 

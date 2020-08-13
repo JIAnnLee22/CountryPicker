@@ -126,9 +126,9 @@ public class MainFragment extends Fragment {
         //选择日期，打开日期选择器
         binding.calendar.setOnClickListener(view -> {
             calendarDialog.showCalenderDialog(binding.date);
-            year = CalendarDialog.getNowYear();
-            month = CalendarDialog.getNowMonth();
-            day = CalendarDialog.getNowDay();
+            year = calendarDialog.getNowYear();
+            month = calendarDialog.getNowMonth();
+            day = calendarDialog.getNowDay();
         });
 
         //点击上传资料

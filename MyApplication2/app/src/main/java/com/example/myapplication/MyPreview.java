@@ -54,7 +54,6 @@ public class MyPreview extends View {
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
-
         //定义父容器的高
         int mWidth = (int) ((getmBottom() - getmTop() - 16) * getmScale());//根据身份证的长宽比算出扫描框的宽
         //y轴的起点和终点分别是getmTop()、getmBottom()
@@ -96,28 +95,26 @@ public class MyPreview extends View {
         if (getmScale() < 1.4) {
             paintRect.setAlpha(1);
             paintRect.setColor(Color.rgb(246, 246, 246));
-            canvas.drawRect(getOrigin(), getmBottom() - (getmBottom() - getmTop()) / 3, getEnd(), getmBottom(), paintRect);
+            canvas.drawRect(getOrigin(), getmBottom() - (getmBottom() - getmTop()) / 5, getEnd(), getmBottom(), paintRect);
             paintText.setColor(Color.rgb(211, 211, 211));
-            paintText.setTextSize(60);
+            paintText.setTextSize(30);
             //两行字
             String text1 = "POCHN<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
             String text2 = "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
             //两行字的基准线
-            float scanHeight = (getmBottom() - getmTop()) / 3;
-            float textY = getmBottom() - (getmBottom() - getmTop()) / 3;
+            float scanHeight = (getmBottom() - getmTop()) / 5;
+            float textY = getmBottom() - (getmBottom() - getmTop()) / 5;
             //文字宽度上限
             int textWidth = getEnd() - getOrigin() - 64;
-
 
             int measuredCount1;
             int measuredCount2;
             float[] measuredWidth = {0};
-            // 宽度上限 300 （不够用，截断）
+            // 宽度上限比镂空的矩形宽度少64 （不够用，截断）
             measuredCount1 = paintText.breakText(text1, 0, text1.length(), true, textWidth, measuredWidth);
             measuredCount2 = paintText.breakText(text2, 0, text2.length(), true, textWidth, measuredWidth);
             canvas.drawText(text1, 0, measuredCount1, getOrigin() + 32, textY + scanHeight * 2 / 5, paintText);
             canvas.drawText(text2, 0, measuredCount2, getOrigin() + 32, textY + scanHeight * 4 / 5, paintText);
-
 
 //            canvas.drawText(text1, origin, textY + scanHeight * 2 / 5, paintText);
 //            canvas.drawText(text2, origin, textY + scanHeight * 4 / 5, paintText);
