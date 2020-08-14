@@ -117,9 +117,9 @@ public class CountryActivity extends AppCompatActivity {
                     if (imm != null) {
                         assert v != null;
                         //隐藏键盘
-                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+//                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                         //取消输入栏的焦点
-                        v.clearFocus();
+//                        v.clearFocus();
                     }
                 }
                 return false;
