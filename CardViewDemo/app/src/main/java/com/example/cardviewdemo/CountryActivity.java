@@ -1,6 +1,7 @@
 package com.example.cardviewdemo;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
@@ -11,8 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,14 +25,14 @@ import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.text.Collator;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+
+import static com.example.cardviewdemo.PinyinUtil.getSpells;
 
 public class CountryActivity extends AppCompatActivity {
 
@@ -44,16 +44,6 @@ public class CountryActivity extends AppCompatActivity {
     private IndexView indexView;
     private EditText searchView;
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-    //自动获取汉子的首字母
-    static final int GB_SP_DIFF = 160;
-    // 存放国标一级汉字不同读音的起始区位码
-    static final int[] secPosValueList = {1601, 1637, 1833, 2078, 2274, 2302,
-            2433, 2594, 2787, 3106, 3212, 3472, 3635, 3722, 3730, 3858, 4027,
-            4086, 4390, 4558, 4684, 4925, 5249, 5600};
-    // 存放国标一级汉字不同读音的起始区位码对应读音
-    static final char[] firstLetter = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-            'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'W', 'X',
-            'Y', 'Z'};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +62,7 @@ public class CountryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.country_list);
         searchView = findViewById(R.id.country_search);
 
+        //初始化三个控件
         initIndexView();
         initRecyclerView();
         initSearchView();
@@ -84,10 +75,15 @@ public class CountryActivity extends AppCompatActivity {
                 for (CountryBean str : tmpList) {
                     //获取第一个大写字母
                     if (getSpells(str.getZh()).substring(0, 1).equals(letter)) {
-                        //获取第一个国家首字母为所点击字母的下标
+
+                        indexView.setmWidth(140);
+
+                        //声明重写的滚动规则
                         LinearSmoothScroller ls = new CountryAdapter.TopSmoothScroller(getApplicationContext());
+                        //传入第一个国家首字母为所点击字母的下标
                         ls.setTargetPosition(tmpList.indexOf(str));
                         linearLayoutManager.startSmoothScroll(ls);
+                        indexView.requestLayout();
                         break;
                     }
                 }
@@ -114,12 +110,16 @@ public class CountryActivity extends AppCompatActivity {
                     //获取焦点所在的view
                     View v = getCurrentFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm != null) {
-                        assert v != null;
+                    if (imm != null && v != null) {
                         //隐藏键盘
-//                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                         //取消输入栏的焦点
-//                        v.clearFocus();
+                        v.clearFocus();
+                        //没有在搜索，显示首字母的布局
+//                        countryAdapter.setSearch(false);
+                        if (tmpList.size() == countryComp().size()) {
+                            countryAdapter.notifyDataSetChanged();
+                        }
                     }
                 }
                 return false;
@@ -134,10 +134,19 @@ public class CountryActivity extends AppCompatActivity {
 
             }
         });
+        //实现item点击监听，点击返回的是所点击item的国家名称
+        countryAdapter.setOnCountryItemClickListener(new CountryAdapter.OnCountryItemClickListener() {
+            @Override
+            public void itemClick(String country) {
+                //country的值就是国家名称
+                Toast.makeText(getApplicationContext(), country, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initSearchView() {
         searchView.addTextChangedListener(new TextWatcher() {
+            //输入框输入监听
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -148,7 +157,15 @@ public class CountryActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                //Log.d(TAG, "afterTextChanged: 输入了文字" + editable);
+                //检测输入文字的数量，如果没有字就还是显示首字母
+                if (editable.length() > 0) {
+                    countryAdapter.setSearch(true);
+                    //输入的时候调用查找含关键字的项
+                } else {
+                    //没有输入文字就当作没有在搜索
+                    countryAdapter.setSearch(false);
+//                    countryAdapter.notifyDataSetChanged();
+                }
                 findCountry(editable.toString());
             }
         });
@@ -156,9 +173,12 @@ public class CountryActivity extends AppCompatActivity {
 
     //将国籍代码按照拼音字母排序
     private List<CountryBean> countryComp() {
+        //list的类型
         Type listType = new TypeToken<List<CountryBean>>() {
         }.getType();
+        //实例化CountryBean并赋值给countryList
         countryLsit = GsonUtils.fromJson(getJson(), listType);
+        //设置排列的项目是中文，完成排列后返回的是按照首字母排序好的列表
         final Comparator<Object> comparator = Collator.getInstance(Locale.CHINA);
         Collections.sort(countryLsit, new Comparator<CountryBean>() {
             @Override
@@ -166,9 +186,6 @@ public class CountryActivity extends AppCompatActivity {
                 return comparator.compare(countryBean.getZh(), t1.getZh());
             }
         });
-//        for (CountryBean c:countryLsit){
-//            Log.d(TAG, "countryComp: "+getSpells(c.getZh()));
-//        }
         return countryLsit;
     }
 
@@ -193,7 +210,7 @@ public class CountryActivity extends AppCompatActivity {
         return stringBuilder.toString();
     }
 
-    //根据中文查找国家
+    //根据关键字查找国家
     private void findCountry(String coutryName) {
         //先清空list数据
         tmpList.clear();
@@ -208,61 +225,6 @@ public class CountryActivity extends AppCompatActivity {
             }
         }
         countryAdapter.notifyDataSetChanged();
-    }
-
-    public static String getSpells(String characters) {
-        StringBuffer buffer = new StringBuffer();
-        for (int i = 0; i < characters.length(); i++) {
-
-            char ch = characters.charAt(i);
-            if ((ch >> 7) == 0) {
-                // 判断是否为汉字，如果左移7为为0就不是汉字，否则是汉字
-            } else {
-                char spell = getFirstLetter(ch);
-                buffer.append(String.valueOf(spell));
-            }
-        }
-        return buffer.toString();
-    }
-
-    // 获取一个汉字的首字母
-    public static Character getFirstLetter(char ch) {
-
-        byte[] uniCode = null;
-        try {
-            uniCode = String.valueOf(ch).getBytes("GBK");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
-        if (uniCode[0] < 128 && uniCode[0] > 0) { // 非汉字
-            return null;
-        } else {
-            return convert(uniCode);
-        }
-    }
-
-    /**
-     * 获取一个汉字的拼音首字母。 GB码两个字节分别减去160，转换成10进制码组合就可以得到区位码
-     * 例如汉字“你”的GB码是0xC4/0xE3，分别减去0xA0（160）就是0x24/0x43
-     * 0x24转成10进制就是36，0x43是67，那么它的区位码就是3667，在对照表中读音为‘n’
-     */
-    static char convert(byte[] bytes) {
-        char result = '-';
-        int secPosValue = 0;
-        int i;
-        for (i = 0; i < bytes.length; i++) {
-            bytes[i] -= GB_SP_DIFF;
-        }
-        secPosValue = bytes[0] * 100 + bytes[1];
-        for (i = 0; i < 23; i++) {
-            if (secPosValue >= secPosValueList[i]
-                    && secPosValue < secPosValueList[i + 1]) {
-                result = firstLetter[i];
-                break;
-            }
-        }
-        return result;
     }
 
 }

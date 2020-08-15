@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="type">
-        <item>身份证</item>
-        <item>护照</item>
-        <item>港澳台通行证</item>
-    </string-array>
-</resources>

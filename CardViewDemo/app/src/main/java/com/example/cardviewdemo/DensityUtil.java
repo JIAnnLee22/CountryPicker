@@ -1,4 +1,4 @@
-package com.example.pro5;
+package com.example.cardviewdemo;
 
 import android.content.res.Resources;
 import android.util.Log;

@@ -6,6 +6,19 @@
     android:layout_height="wrap_content"
     android:clickable="true">
 
+    <TextView
+        android:id="@+id/first_pinyin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/divider"
+        android:paddingLeft="16dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:text="A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/country_card"
         android:layout_width="0dp"
@@ -13,10 +26,9 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/first_pinyin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -10,7 +10,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,6 +35,7 @@
                     android:id="@+id/tableRow3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/piechart">
@@ -41,6 +43,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
                         android:layout_weight="1"
                         android:clickable="true"
                         android:focusable="true"
@@ -60,7 +63,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="TextView"
+                                android:text="0"
                                 android:textColor="@android:color/background_dark"
                                 android:textSize="18sp" />
 
@@ -78,6 +81,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
                         android:layout_marginLeft="0.1dp"
                         android:layout_marginRight="0.1dp"
                         android:layout_weight="1"
@@ -99,7 +103,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="TextView"
+                                android:text="0"
                                 android:textColor="@android:color/background_dark"
                                 android:textSize="18sp" />
 
@@ -117,6 +121,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
                         android:layout_weight="1"
                         android:clickable="true"
                         android:focusable="true"
@@ -136,7 +141,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="TextView"
+                                android:text="0"
                                 android:textColor="@android:color/background_dark"
                                 android:textSize="18sp" />
 
@@ -164,6 +169,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
                         android:layout_weight="1"
                         android:clickable="true"
                         android:focusable="true"
@@ -183,7 +189,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="TextView"
+                                android:text="0"
                                 android:textColor="@android:color/background_dark"
                                 android:textSize="18sp" />
 
@@ -200,6 +206,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
                         android:layout_marginLeft="0.1dp"
                         android:layout_marginRight="0.1dp"
                         android:layout_weight="1"
@@ -221,7 +228,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="TextView"
+                                android:text="0"
                                 android:textColor="@android:color/background_dark"
                                 android:textSize="18sp" />
 
@@ -239,6 +246,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="1dp"
                         android:layout_weight="1"
                         android:focusable="true"
                         android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -284,6 +292,8 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="16dp"
                             android:text="营业收入"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -370,6 +380,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/textView"
@@ -400,11 +411,11 @@
                                             android:text="收入（元）" />
 
                                         <TextView
-                                            android:id="@+id/textView3"
+                                            android:id="@+id/part1_income"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView"
+                                            android:text="0"
                                             android:textColor="@android:color/black"
                                             android:textSize="18sp" />
 
@@ -413,7 +424,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView" />
+                                            android:text="与上周五持平" />
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
 
@@ -437,11 +448,11 @@
                                             android:text="营业额（元）" />
 
                                         <TextView
-                                            android:id="@+id/textView6"
+                                            android:id="@+id/part1_turnover"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView"
+                                            android:text="0"
                                             android:textColor="@android:color/black"
                                             android:textSize="18sp" />
 
@@ -450,7 +461,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView" />
+                                            android:text="与上周五持平" />
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
 
@@ -474,11 +485,11 @@
                                             android:text="支出（元）" />
 
                                         <TextView
-                                            android:id="@+id/textView22"
+                                            android:id="@+id/part1_exp"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView"
+                                            android:text="0"
                                             android:textColor="@android:color/black"
                                             android:textSize="18sp" />
 
@@ -487,7 +498,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView" />
+                                            android:text="与上周五持平" />
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
                             </TableRow>
@@ -517,11 +528,11 @@
                                             android:text="有效订单量" />
 
                                         <TextView
-                                            android:id="@+id/textView25"
+                                            android:id="@+id/part1_eff_volume"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView"
+                                            android:text="0"
                                             android:textColor="@android:color/black"
                                             android:textSize="18sp" />
 
@@ -530,7 +541,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView" />
+                                            android:text="与上周五持平" />
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
 
@@ -554,11 +565,11 @@
                                             android:text="单均实付（元）" />
 
                                         <TextView
-                                            android:id="@+id/textView28"
+                                            android:id="@+id/part1_paid"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView"
+                                            android:text="0"
                                             android:textColor="@android:color/black"
                                             android:textSize="18sp" />
 
@@ -567,7 +578,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView" />
+                                            android:text="与上周五持平" />
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
 
@@ -591,11 +602,11 @@
                                             android:text="无效订单量" />
 
                                         <TextView
-                                            android:id="@+id/textView31"
+                                            android:id="@+id/part1_inval_volume"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView"
+                                            android:text="0"
                                             android:textColor="@android:color/black"
                                             android:textSize="18sp" />
 
@@ -604,7 +615,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
-                                            android:text="TextView" />
+                                            android:text="与上周五持平" />
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
                             </TableRow>
@@ -639,6 +650,8 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="16dp"
                             android:text="流量转化"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -679,6 +692,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/textView35"
@@ -702,10 +716,10 @@
                                         android:text="曝光人数" />
 
                                     <TextView
-                                        android:id="@+id/textView37"
+                                        android:id="@+id/part2_exposure"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView"
+                                        android:text="0"
                                         android:textColor="@android:color/black"
                                         android:textSize="18sp" />
 
@@ -713,7 +727,7 @@
                                         android:id="@+id/textView36"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView" />
+                                        android:text="与上周五持平" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -729,10 +743,10 @@
                                         android:text="进店转换率" />
 
                                     <TextView
-                                        android:id="@+id/textView40"
+                                        android:id="@+id/part2_store_rate"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView"
+                                        android:text="0.0%"
                                         android:textColor="@android:color/black"
                                         android:textSize="18sp" />
 
@@ -740,7 +754,7 @@
                                         android:id="@+id/textView39"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView" />
+                                        android:text="与上周五持平" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -756,10 +770,10 @@
                                         android:text="下单转换率" />
 
                                     <TextView
-                                        android:id="@+id/textView43"
+                                        android:id="@+id/part2_order_rate"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView"
+                                        android:text="0.0%"
                                         android:textColor="@android:color/black"
                                         android:textSize="18sp" />
 
@@ -767,7 +781,7 @@
                                         android:id="@+id/textView42"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView" />
+                                        android:text="与上周五持平" />
 
                                 </LinearLayout>
                             </LinearLayout>
@@ -790,7 +804,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <Button
                             android:id="@+id/button3"
@@ -800,9 +814,8 @@
                             android:layout_marginRight="8dp"
                             android:background="@drawable/ic_baseline_chevron_right_24"
                             android:clickable="false"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="@+id/textView47" />
 
                         <TextView
                             android:id="@+id/textView45"
@@ -821,6 +834,8 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="16dp"
                             android:text="顾客运营"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -830,11 +845,22 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="32dp"
                             android:layout_marginRight="32dp"
-                            android:layout_marginBottom="1dp"
                             android:text="查看全部"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/textView46" />
+
+                        <com.example.pro5.CircleView
+                            android:id="@+id/circleView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="24dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintStart_toStartOf="@+id/textView45"
+                            app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
@@ -864,6 +890,8 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="16dp"
                             android:text="热销商品"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -871,8 +899,8 @@
                             android:id="@+id/textView49"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
+                            android:layout_marginEnd="32dp"
+                            android:layout_marginRight="32dp"
                             android:text="查看全部"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/textView48" />
@@ -915,16 +943,30 @@
                             app:layout_constraintTop_toTopOf="@+id/textView52" />
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/sales_list"
                             android:layout_width="0dp"
-                            android:layout_height="200dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginLeft="16dp"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
+                            android:layout_marginBottom="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+                        <Button
+                            android:id="@+id/button5"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:background="@drawable/ic_baseline_chevron_right_24"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView49"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/textView49" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
@@ -933,6 +975,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     app:cardCornerRadius="0dp"
@@ -954,6 +997,8 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="16dp"
                             android:text="服务分析"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -983,6 +1028,8 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/textView56"
                             app:layout_constraintTop_toBottomOf="@+id/textView56">
@@ -1002,19 +1049,26 @@
                                         android:id="@+id/textView59"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
                                         android:text="商品取消率" />
 
                                     <TextView
-                                        android:id="@+id/textView58"
+                                        android:id="@+id/part5_cancel_rate"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView" />
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
+                                        android:text="0.0%"
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:id="@+id/textView57"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView" />
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
+                                        android:text="与上周五持平" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -1027,19 +1081,29 @@
                                         android:id="@+id/textView65"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:paddingLeft="16dp"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
                                         android:text="催单率" />
 
                                     <TextView
-                                        android:id="@+id/textView64"
+                                        android:id="@+id/part5_reminder_rate"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView" />
+                                        android:paddingLeft="16dp"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
+                                        android:text="0.0%"
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:id="@+id/textView63"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView" />
+                                        android:paddingLeft="16dp"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
+                                        android:text="与上周五持平" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -1052,19 +1116,29 @@
                                         android:id="@+id/textView62"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:paddingLeft="16dp"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
                                         android:text="差评率" />
 
                                     <TextView
-                                        android:id="@+id/textView61"
+                                        android:id="@+id/part5_negative_rate"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView" />
+                                        android:paddingLeft="16dp"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
+                                        android:text="0.0%"
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:id="@+id/textView60"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="TextView" />
+                                        android:paddingLeft="16dp"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="8dp"
+                                        android:text="与上周五持平" />
                                 </LinearLayout>
                             </LinearLayout>
                         </TableRow>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.RectF;
@@ -55,17 +56,14 @@ public class PieChartView extends View {
         initData();
     }
 
+    private void init() {
+        paint = new Paint();
+        polyPaint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.RED);
+    }
+
     private void initData() {
-        //设置模拟数据
-        list.add(100f);
-        list.add(200f);
-        list.add(200f);
-        list.add(300f);
-        list.add(300f);
-
-        getAngle();
-
-        account = account();
 
         colors.add(Color.rgb(244, 102, 101));
         colors.add(Color.rgb(0, 214, 242));
@@ -81,17 +79,15 @@ public class PieChartView extends View {
 
     }
 
-    private void init() {
-        paint = new Paint();
-        polyPaint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.RED);
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (int i = 0; i < list.size(); i++) {
+        canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
+        getAngle();
+        account = account();
+        canvas.drawColor(Color.WHITE);
+        for (int i = 0; i < getList().size(); i++) {
+            setNum(i);
             paint.setColor(colors.get(i));
             drawArc(canvas, i);
             drawRoundRect(canvas, i);
@@ -99,8 +95,9 @@ public class PieChartView extends View {
         drawCenterCirCle(canvas);
     }
 
+    //画每一个扇形
     private void drawArc(Canvas canvas, int i) {
-        float sweepAngle = 360 * list.get(i) / account;
+        float sweepAngle = 360 * getList().get(i) / account;
         if (i == angleId) {
             canvas.drawArc(arcRectFF, startAngle, sweepAngle, true, paint);
         } else {
@@ -110,33 +107,35 @@ public class PieChartView extends View {
         startAngle = startAngle + sweepAngle;
     }
 
+    //画中心圆
     private void drawCenterCirCle(Canvas canvas) {
         paint.setColor(Color.WHITE);
-        canvas.drawCircle(arcRectF.centerX(), arcRectF.centerY(), arcRectF.width() * 0.35f, paint);
+        canvas.drawCircle(arcRectF.centerX(), arcRectF.centerY(), arcRectF.width() * 0.3f, paint);
     }
 
+    //画圆角矩形
     private void drawRoundRect(Canvas canvas, int i) {
         RectF rectF = new RectF();
         switch (i) {
             case 0:
                 rectF.left = mRectF.width() / 12;
-                rectF.top = arcRectF.bottom * 13 / 12;
+                rectF.top = arcRectF.bottom * 15 / 13;
                 break;
             case 1:
                 rectF.left = mRectF.width() * 5 / 12;
-                rectF.top = arcRectF.bottom * 13 / 12;
+                rectF.top = arcRectF.bottom * 15 / 13;
                 break;
             case 2:
                 rectF.left = mRectF.width() * 9 / 12;
-                rectF.top = arcRectF.bottom * 13 / 12;
+                rectF.top = arcRectF.bottom * 15 / 13;
                 break;
             case 3:
                 rectF.left = mRectF.width() / 12;
-                rectF.top = arcRectF.bottom * 14 / 12;
+                rectF.top = arcRectF.bottom * 19 / 15;
                 break;
             case 4:
                 rectF.left = mRectF.width() * 5 / 12;
-                rectF.top = arcRectF.bottom * 14 / 12;
+                rectF.top = arcRectF.bottom * 19 / 15;
                 break;
         }
         //有了起始坐标加上宽高就是终点坐标，将圆角矩形设置成32X32
@@ -144,8 +143,8 @@ public class PieChartView extends View {
         rectF.bottom = rectF.top + 32;
         canvas.drawRoundRect(rectF, 9, 9, paint);
         paint.setColor(Color.DKGRAY);
-        paint.setTextSize(rectF.bottom - rectF.top);
-        canvas.drawText(lableList.get(i), rectF.right + 16, rectF.bottom, paint);
+        paint.setTextSize(DensityUtil.sp2px(14));
+        canvas.drawText(lableList.get(i), rectF.right + 16, getBaseLine(paint, rectF.centerY()), paint);
     }
 
     //画折线
@@ -194,7 +193,7 @@ public class PieChartView extends View {
         //改成字体的颜色
         polyPaint.setColor(Color.DKGRAY);
         polyPaint.setStyle(Paint.Style.FILL);
-        polyPaint.setTextSize(32);
+        polyPaint.setTextSize(DensityUtil.sp2px(12));
         if (point.x < arcRectF.centerX()) {
             point.x -= polyPaint.measureText(lableList.get(getNum())) + 16;
         } else {
@@ -205,7 +204,7 @@ public class PieChartView extends View {
             case 1:
             case 2:
                 canvas.drawText(lableList.get(getNum()), point.x, point.y, polyPaint);
-                canvas.drawText(String.valueOf(list.get(getNum())), point.x, point.y + polyPaint.getTextSize(), polyPaint);
+                canvas.drawText(String.valueOf(getList().get(getNum())), point.x, point.y + polyPaint.getTextSize(), polyPaint);
                 break;
             case 3:
             case 4:
@@ -220,18 +219,16 @@ public class PieChartView extends View {
         float is = 0;
         float startAng = -90;
 //        float sweepAng = 0;
-        for (int i = 0; i < list.size(); i++) {
-            is += list.get(i);
+        for (int i = 0; i < getList().size(); i++) {
+            is += getList().get(i);
             startAng = 360 * is / account() - 90;
-            Log.d(TAG, "getAngle: " + startAng);
             startList.add(startAng);
         }
-//        sweepAng = list.get(index) / account();
     }
 
     float account() {
         float account = 0;
-        for (float i : list) {
+        for (float i : getList()) {
             account = account + i;
         }
         return account;
@@ -245,22 +242,22 @@ public class PieChartView extends View {
         mRectF = new RectF(0, 0, getMeasuredWidth(), getMeasuredWidth());
         arcRectF = new RectF(
                 mRectF.width() * 0.25f,
-                mRectF.width() * 0.25f,
+                mRectF.width() * 0.1f,
                 mRectF.width() * 0.75f,
-                mRectF.width() * 0.75f);
+                mRectF.width() * 0.6f);
         arcRectFF = new RectF(
                 mRectF.width() * 0.225f,
-                mRectF.width() * 0.225f,
+                mRectF.width() * 0.075f,
                 mRectF.width() * 0.775f,
-                mRectF.width() * 0.775f);
-        setMeasuredDimension(getMeasuredWidth(), (int) (arcRectF.bottom * 15 / 12));
+                mRectF.width() * 0.625f);
+        setMeasuredDimension(getMeasuredWidth(), (int) (arcRectF.bottom * 19 / 14));
 
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-    }
+//    @Override
+//    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+//        super.onSizeChanged(w, h, oldw, oldh);
+//    }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -269,49 +266,39 @@ public class PieChartView extends View {
         float y = event.getY() - arcRectF.centerY();
 
         float xrad = (float) Math.atan2(y, x) / PI * 180;
-
+        float r = (float) Math.sqrt(x * x + y * y);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (y < 0 && x < 0) {
                     xrad += 360;
                 }
-
-                for (float s : startList) {
-                    if (xrad < s) {
-                        angleId = 0;
-                        if (startList.indexOf(s) != 0) {
-                            angleId = startList.indexOf(s);
+                if (r > arcRectF.width() * 0.3f && r < arcRectF.width() / 2) {
+                    for (float s : startList) {
+                        if (xrad < s) {
+                            angleId = 0;
+                            if (startList.indexOf(s) != 0) {
+                                angleId = startList.indexOf(s);
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
                 invalidate();
                 return true;
-
-//            case MotionEvent.ACTION_MOVE:
-//                if (y < 0 && x < 0) {
-//                    xrad += 360;
-//                }
-//
-//                for (float s : startList) {
-//                    if (xrad < s) {
-//                        angleId = 0;
-//                        if (startList.indexOf(s) != 0) {
-//                            angleId = startList.indexOf(s);
-//                        }
-//                        break;
-//                    }
-//                }
-//                invalidate();
-//
-//                return true;
             case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
                 angleId = -1;
                 invalidate();
                 return true;
+
         }
 
         return super.onTouchEvent(event);
+    }
+
+    //获取文字的基线
+    private float getBaseLine(Paint paint, float centerY) {
+        return centerY - (paint.getFontMetricsInt().bottom + paint.getFontMetricsInt().top) / 2;
     }
 
     //正在绘制的下标
@@ -330,6 +317,4 @@ public class PieChartView extends View {
     public void setList(List<Float> list) {
         this.list = list;
     }
-
-
 }
