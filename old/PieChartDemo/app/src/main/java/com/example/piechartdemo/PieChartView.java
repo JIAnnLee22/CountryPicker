@@ -21,7 +21,7 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
-class PieChartView extends View {
+public class PieChartView extends View {
 
 
     private List<Integer> colors = new ArrayList<>();
